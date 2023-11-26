@@ -1,14 +1,12 @@
-function deleteNonImage() {
-    var timeline = document.querySelector('[aria-label="Timeline: Your Home Timeline"]');
-    console.log("you called?");
-    var cells = timeline.querySelectorAll('[data-testid="cellInnerDiv"]');
-    cells.forEach((currentElement) => {
-        var imageElement = currentElement.querySelector('[aria-label="Image"]')
-        if(imageElement == null) {
-            currentElement.style.display = "none";
-            console.log("DELETE IT");
-        }
-    });
+function checkNode(addedNode) {
+    setTimeout(() => {
+      console.log("you called?");
+      var imageElement = addedNode.querySelector('[aria-label="Image"]');
+      if(imageElement == null) {
+          addedNode.style.display = "none";
+          console.log("DELETE IT");
+      }
+    }, 1000);
 }
 
 function onError(error) {
@@ -22,10 +20,14 @@ function onGot(item) {
       childList: true,
     };
 
-    var observer = new MutationObserver(deleteNonImage);
+    var observer = new MutationObserver(mutations => {
+      mutations.forEach(mutation => {
+        mutation.addedNodes.forEach(addedNode => {
+          checkNode(addedNode);
+        });
+      });
+    });
     var timeline = document.querySelector('[aria-label="Timeline: Your Home Timeline"]');
-    deleteNonImage();
-    console.log(timeline);
     observer.observe(timeline.firstChild, config);
   } else {
     console.log("no");
