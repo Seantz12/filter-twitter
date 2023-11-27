@@ -1,23 +1,28 @@
 function saveOptions(e) {
   e.preventDefault();
   browser.storage.sync.set({
-    images: document.querySelector("#images").checked,
+    filters: {
+      images: document.querySelector("#images").checked,
+      videos: document.querySelector("#videos").checked
+    },
   });
   console.log("saving...");
 }
 
 function restoreOptions() {
   function setCurrentChoice(result) {
-    document.querySelector("#images").checked = result.images || false;
+    document.querySelector("#images").checked = result.filters.images || false;
+    document.querySelector("#videos").checked = result.filters.videos || false;
   }
 
   function onError(error) {
     console.log(`Error: ${error}`);
   }
 
-  let getting = browser.storage.sync.get("images");
+  let getting = browser.storage.sync.get("filters");
   getting.then(setCurrentChoice, onError);
 }
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
 document.querySelector("#images").addEventListener("change", saveOptions);
+document.querySelector("#videos").addEventListener("change", saveOptions);
