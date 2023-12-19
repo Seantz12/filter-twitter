@@ -1,15 +1,16 @@
 # filter-twitter
 An automatic filtering of posts that you're not interested in
 
-So far all it does is filter posts without images or videos, because I'm not browsing internet for text, I'm browsing it for art.
+So far all it does is filter posts without images or videos, because I'm not browsing twitter for text, I'm browsing it for art.
 
 May look into doing things like
 
 * Only images! Aka by deleting even the text captions
 * If we're super cool, maybe even classification of images!
+* Maybe hide tweets with image, then click to show? might be better flow wise?
 
 Problems:
 
-* Find a way to not delete the "show new things"
 * The options page is ugly
-* also i think the options loading in doesn't work properly on first load
+* Bit stutery, not sure if good way to fix that
+* If the hidden tweet is a reply tweet, makes the next tweet look like a reply

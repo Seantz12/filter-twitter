@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Filter Twitter",
   "version": "1.0",
 
@@ -10,7 +10,7 @@
     "48": "icons/placeholder.png"
   },
 
-  "browser_action": {
+  "action": {
     "default_icon": "icons/placeholder.png",
     "default_title": "Filter Twitter",
     "default_popup": "popup/filter.html"
@@ -20,17 +20,23 @@
     "page": "options/options.html"
   },
 
+  "background": {
+    "scripts": ["background_scripts/background.js"],
+    "type": "module"
+  },
+
   "content_scripts": [
     {
-      "matches": ["*://twitter.com/home"],
+      "matches": ["*://twitter.com/*"],
       "js": ["content_scripts/filter_twitter.js"]
     }
   ],
 
   "permissions": [
-    "*://twitter.com/home",
+    "webNavigation",
     "activeTab",
-    "storage"
+    "storage",
+    "tabs"
   ],
 
   "browser_specific_settings": {

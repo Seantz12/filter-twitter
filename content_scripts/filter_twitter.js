@@ -8,11 +8,15 @@ function hasVideo(element) { // Seems to also catch gifs
   return videoElement != null;
 }
 
+function isTweet(element) { // Checks if tweet or not actually a tweet
+  var showElement = element.querySelector('article');
+  return showElement != null;
+}
 // If we want a separate gif filter, look for videoPlayer with span that has GIF text in it
 
 function checkNode(addedNode, filterFunctions) {
   setTimeout(() => {
-    if(filterFunctions.length == 0) return; // no filters
+    if(filterFunctions.length == 0 || !isTweet(addedNode)) return; // no filters
     var conditionMet = false;
     // this is a dumb name, im bad at english, filter function implies if it meets we filter, but i have the opposite
     for(filterFunction of filterFunctions) {
@@ -25,7 +29,13 @@ function checkNode(addedNode, filterFunctions) {
         addedNode.style.display = "none";
         console.log("DELETE IT");
     }
-  }, 1000);
+  }, 500);
+}
+
+function filterTimeline(timeline, filterFunctions) {  // used for initial load (or manual trigger if needed at any point?)
+  for(const child of timeline.children) {
+    checkNode(child, filterFunctions)
+  }
 }
 
 function onError(error) {
@@ -44,17 +54,13 @@ function onGot(settings) {
   main(filterFunctions);
 }
 
+
 function main(filterFunctions) {
   const timelineObserver = new MutationObserver(function (mutations, mutationInstance) {
     var timeline = document.querySelector('[aria-label="Timeline: Your Home Timeline"] > div');
     if(timeline && timeline.childElementCount > 1) {
+      filterTimeline(timeline, filterFunctions);
       attachTimelineListener(timeline, filterFunctions);
-      var tabs = document.querySelectorAll('[aria-label="Home timeline"] nav a');
-      for(tab of tabs) {
-        tab.parentNode.addEventListener('click', () => { 
-          main(filterFunctions); 
-        });
-      }
       mutationInstance.disconnect();
     }
   });
@@ -63,9 +69,8 @@ function main(filterFunctions) {
       childList: true,
       subtree:   true
   });
-
-
 }
+
 
 function attachTimelineListener(timeline, filterFunctions) {
   var observer = new MutationObserver(mutations => {
@@ -80,5 +85,7 @@ function attachTimelineListener(timeline, filterFunctions) {
   observer.observe(timeline, config);
 }
 
-const getting = browser.storage.sync.get("filters");
-getting.then(onGot, onError);
+browser.runtime.onMessage.addListener((request) => {
+  const getting = browser.storage.sync.get("filters");
+  getting.then(onGot, onError);
+});
