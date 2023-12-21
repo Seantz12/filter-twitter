@@ -7,11 +7,11 @@
   "homepage_url": "https://github.com/Seantz12/filter-twitter",
 
   "icons": {
-    "48": "icons/placeholder.png"
+    "48": "icons/icon.png"
   },
 
   "action": {
-    "default_icon": "icons/placeholder.png",
+    "default_icon": "icons/icon.png",
     "default_title": "Filter Twitter",
     "default_popup": "popup/filter.html"
   },
