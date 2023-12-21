@@ -6,7 +6,6 @@ function saveOptions(e) {
       videos: document.querySelector("#videos").checked
     },
   });
-  console.log("saving...");
 }
 
 function restoreOptions() {

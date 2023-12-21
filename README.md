@@ -6,11 +6,9 @@ So far all it does is filter posts without images or videos, because I'm not bro
 May look into doing things like
 
 * Only images! Aka by deleting even the text captions
-* If we're super cool, maybe even classification of images!
 * Maybe hide tweets with image, then click to show? might be better flow wise?
 
-Problems:
+Problems/Known issues:
 
-* The options page is ugly
-* Bit stutery, not sure if good way to fix that
 * If the hidden tweet is a reply tweet, makes the next tweet look like a reply
+* Have to enable it to always read data from site, default load is only when clicked (which does not work) 

@@ -1,6 +1,9 @@
 html,
 body {
-  width: 100px;
+  width: 250px;
+  background-color: rgb(23, 0, 107);
+  color: white;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .hidden {

@@ -27,7 +27,6 @@ function checkNode(addedNode, filterFunctions) {
     }
     if(!conditionMet) {
         addedNode.style.display = "none";
-        console.log("DELETE IT");
     }
   }, 500);
 }
@@ -38,7 +37,7 @@ function filterTimeline(timeline, filterFunctions) {  // used for initial load (
   }
 }
 
-function onError(error) {
+function onError(error) { // Probably called when no filters set which is fine
   console.log(`Error: ${error}`);
 }
 
