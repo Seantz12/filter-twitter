@@ -23,7 +23,7 @@
 
   "content_scripts": [
     {
-      "matches": ["*://twitter.com/*"],
+      "matches": ["*://x.com/*"],
       "js": ["content_scripts/filter_twitter.js"]
     }
   ],
@@ -35,7 +35,7 @@
   ],
 
   "host_permissions": [
-    "*://twitter.com/*"
+    "*://x.com/*"
   ],
 
   "browser_specific_settings": {

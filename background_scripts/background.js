@@ -4,5 +4,5 @@ browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
         // Perform you task after page loaded completely 
         }
     },
-    { urls: ["*://twitter.com/home"] },
+    { urls: ["*://x.com/home"] },
 );
