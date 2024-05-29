@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Filter Twitter",
-  "version": "1.0",
+  "version": "1.1",
 
   "description": "Adds a custom filter to remove posts from your timeline",
   "homepage_url": "https://github.com/Seantz12/filter-twitter",
